@@ -2,8 +2,8 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
     database_port:     ~
-    database_name:     symfony
-    database_user:     root
+    database_name:     roger_cms
+    database_user:     ~
     database_password: ~
 
     mailer_transport:  smtp
