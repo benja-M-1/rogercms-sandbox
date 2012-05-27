@@ -9,13 +9,23 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ROGER_MANAGER:    [ROLE_ROGER_CMS_CONTENT_MANAGER, ROLE_ROGER_CMS_DESIGN_MANAGER]
+
 
     providers:
         in_memory:
             memory:
                 users:
                     user:  { password: userpass, roles: [ 'ROLE_USER' ] }
-                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
+                    admin:
+                        password: adminpass
+                        roles:
+                            - ROLE_ADMIN
+                            - ROLE_ROGER_MANAGER
+                            - ROLE_ROGER_CMS_MEDIA_MANAGER
+                            - ROLE_ROGER_CMS_PAGE_MANAGER
+                            - ROLE_ROGER_CMS_LAYOUT_MANAGER
+                            - ROLE_ROGER_CMS_SNIPPET_MANAGER
 
     firewalls:
         dev:
@@ -37,6 +47,12 @@ security:
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
+
+        roger_admin:
+            pattern:    ^/admin
+            http_basic:
+                realm: "Secured Demo Area"
+            logout:     ~
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
