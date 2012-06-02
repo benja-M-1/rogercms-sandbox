@@ -45,6 +45,7 @@ doctrine:
         password: %database_password%
         charset:  UTF8
         memory:   true
+        path:     %kernel.cache_dir%/rogercms.db
 
 
     orm:
